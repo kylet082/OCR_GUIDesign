@@ -13,20 +13,28 @@ import javax.swing.JPanel;
 import org.opencv.core.Mat;
 import org.opencv.core.Size;
 
+import kgt.dev.ocr_gui.utilities.ImageProc;
+
 public class ImageMatrix {
 
 	private Mat imgMat;
+	
 	private File file;
+	
 	private boolean isSelected;
+	
 	private Image thumbImg;
+	
 	private Size thumbImgSize;
+	
 	private JPanel imgListItem;
 	
 	
 	/**
-	 * 
-	 * @param newMat
-	 * @param newFile
+	 * CONSTRUCTOR
+	 *  
+	 * @param newMat image matrix
+	 * @param newFile file
 	 */
 	public ImageMatrix(Mat newMat,File newFile){
 		this.file = newFile;
@@ -69,6 +77,8 @@ public class ImageMatrix {
 	}
 	
 	/**
+	 * Create a thumb image of the image matrix
+	 * 
 	 * @return - the dimensions of the thumb image
 	 */
 	public Size getThumbImgSize(){
@@ -99,6 +109,8 @@ public class ImageMatrix {
 	}
 	
 	/**
+	 * flag if the image item is selected
+	 * 
 	 * @return - selected flag
 	 */
 	public boolean getIsSelected(){
@@ -124,5 +136,12 @@ public class ImageMatrix {
 	 */
 	public void setIsSelected(boolean isSelect) {
 		this.isSelected = isSelect;	
+	}
+	
+	/**
+	 * @param m  -set the matrix
+	 */
+	public void setImgMat(Mat m){
+		this.imgMat = m;
 	}
 }

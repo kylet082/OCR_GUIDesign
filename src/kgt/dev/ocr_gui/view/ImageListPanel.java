@@ -24,17 +24,22 @@ import javax.swing.border.EtchedBorder;
 import kgt.dev.ocr_gui.model.ImageMatrix;
 
 public class ImageListPanel extends Panel {
+	private static final long serialVersionUID = 7833067166755044988L;
 
-	private static final long serialVersionUID = 1L;
 	private int width,height;
+	
 	private JPanel outerPanel,topPane,btmPane,
 					viewportPanel,thumbCont;
 
 	private JScrollPane imgListPane;
+	
 	private JButton openBtn,clearBtn,saveBtn,copyBtn,viewBtn;
+	
 	private ImageIcon openIc,clearIc,saveIc,copyIc,viewIc;
 	
 	/**
+	 * CONSTRUCTOR
+	 * 
 	 * @param newWidth
 	 * @param newHeight
 	 */
@@ -92,6 +97,7 @@ public class ImageListPanel extends Panel {
 		//imgListPane.setPreferredSize(new Dimension(200,300));
 		viewportPanel = new JPanel();
 		viewportPanel.setPreferredSize(new Dimension(width -55,(getPreferredSize().height -110)));
+		
 
 		imgListPane.setPreferredSize(new Dimension(width -30,(getPreferredSize().height -125)));
 		
@@ -169,7 +175,8 @@ public class ImageListPanel extends Panel {
 		imgLabel.setIcon(icon);
 		//(int) img.getThumbImgSize().height +16
 		thumbCont.setPreferredSize(new Dimension(width-50,(int)img.getThumbImgSize().height+16));
-		System.out.println(img.getThumbImgSize());
+		
+	
 		panel1.add(imgLabel);
 		panel.add(imgName);
 		
@@ -177,7 +184,8 @@ public class ImageListPanel extends Panel {
 		thumbCont.add(panel);
 		
 		img.setImgListItem(thumbCont);
-		
+			
+		System.out.println(viewportPanel.getHeight());
 		viewportPanel.add(thumbCont);
 		viewportPanel.revalidate();
 		

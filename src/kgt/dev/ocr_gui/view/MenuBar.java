@@ -13,12 +13,19 @@ import javax.swing.UIManager;
 public class MenuBar {
 	
 	private JFrame frame;
+	
 	private JMenuBar menuBar;
-	private JMenu fileMenu,editMenu,helpMenu;
+	
+	private JMenu fileMenu,editMenu,helpMenu,
+					nnMenu;
+	
 	//File node menu items
-	private JMenuItem newMenuItem,openFileItem,saveFileItem;
+	private JMenuItem newMenuItem,openFileItem,saveFileItem,
+				configNNItem,traingSetItem;
 	
 	/**
+	 * CONSTRUCTOR
+	 * 
 	 * @param newFrame - the main content frame
 	 */
 	public MenuBar(JFrame newFrame){
@@ -31,13 +38,15 @@ public class MenuBar {
 	 */
 	public void initMenu(){
 		initFileMenu();
+		initEditMenu();
+		initNeuroNetMenu();
 		
 		frame.setJMenuBar(getMenuBar());
 		
 	}
 	
 	/**
-	 * Intializes the File menu components
+	 * Initializes the File menu components
 	 */
 	protected void initFileMenu(){
 		fileMenu = new JMenu("File");
@@ -55,25 +64,36 @@ public class MenuBar {
 	}
 	
 	/**
-	 * 	Initailizes the Edit menu components
+	 * 	Initializes the Edit menu components
 	 */
 	protected void initEditMenu(){
 		editMenu = new JMenu("Edit");
+		
+		menuBar.add(editMenu);
 	}
 	
 	/**
-	 * @return
+	 * Initializes the neural Network menu Components
+	 */
+	protected void initNeuroNetMenu(){
+		nnMenu = new JMenu("Neural Network");
+		
+		configNNItem = new JMenuItem("Configure");
+		traingSetItem =new JMenuItem("Training Sets");
+		
+		nnMenu.add(configNNItem);
+		nnMenu.add(traingSetItem);
+		
+		menuBar.add(nnMenu);
+	}
+	
+	/**
+	 * @return - menu bar  
 	 */
 	public JMenuBar getMenuBar(){
 		return menuBar;
 	}
 	
-	/**
-	 * @return
-	 */
-	/*public JFrame getMenuFrame(){
-		return frame;
-	}*/
 	
 	/**
 	 * @return - file menu 
@@ -101,5 +121,12 @@ public class MenuBar {
 	 */
 	public JMenuItem getSaveMenuItem(){
 		return saveFileItem;
+	}
+	
+	/**
+	 * @return - training set menu item menu 
+	 */
+	public JMenuItem getNNMenu(){
+		return traingSetItem;
 	}
 }

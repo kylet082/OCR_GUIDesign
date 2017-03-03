@@ -9,6 +9,8 @@ public class OpenImages {
 	private List<ImageMatrix> imageList;
 	
 	/**
+	 * CONSTRUCTOR
+	 * 
 	 * Instantiates the ArrayList to store the open images 
 	 */
 	public OpenImages(){
@@ -33,7 +35,7 @@ public class OpenImages {
 	}
 	
 	/**
-	 * @return
+	 * @return project name
 	 */
 	public String getProjectName(){
 		return projectName;

@@ -1,4 +1,4 @@
-package kgt.dev.ocr_gui.model;
+package kgt.dev.ocr_gui.utilities;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
@@ -18,7 +18,13 @@ public class ImageProc {
 	public static final int 
 						AXIS_WIDTH = 1,
 						AXIS_HEIGHT = 2;
-		
+	
+	/**
+	 * CONSTRUCTOR
+	 */
+	private ImageProc(){
+		throw new AssertionError();
+	}
 	/**
 	 * Convert the Matrix image into a Buffered Image
 	 * 
@@ -84,9 +90,10 @@ public class ImageProc {
 	
 	/**
 	 * 
-	 * @param imgMat
-	 * @param sizeTo
-	 * @return
+	 * @param imgMat - image matrix to resize
+	 * @param sizeTo -The dimensions to resize to
+	 * 
+	 * @return  -resized image matrix
 	 */
 	public static Mat resizeImageMat(Mat imgMat,Size sizeTo){
 		Size size = imgMat.size();
@@ -100,9 +107,8 @@ public class ImageProc {
 	}
 	
 	/**
-	 * 
-	 * @param imageMat
-	 * @return
+	 * @param imageMat image matrix to clone
+	 * @return - the cloned image matrix
 	 */
 	public static Mat cloneImageMat(Mat imageMat){
 		Mat clonedImageMat = new Mat();

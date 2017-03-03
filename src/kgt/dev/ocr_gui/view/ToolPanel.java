@@ -17,10 +17,14 @@ import javax.swing.border.EtchedBorder;
 public class ToolPanel extends Panel {
 	
 	private static final long serialVersionUID = 1L;
+	
 	private int width, height;
+	
 	private JPanel outerPanel;
 	
 	/**
+	 * CONSTRUCTOR
+	 * 
 	 * @param newWidth - panel width
 	 * @param newHeight - panel height
 	 */
@@ -57,6 +61,5 @@ public class ToolPanel extends Panel {
 		outerPanel.setBorder(outerBorder);
 		
 		this.add(outerPanel);
-		
 	}
 }

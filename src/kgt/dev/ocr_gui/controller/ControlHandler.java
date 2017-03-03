@@ -8,8 +8,10 @@ public class ControlHandler {
 	private ModelHandler model;
 	private ViewHandler view;
 	public static PrimaryActionController primaryActions;
+	public static CenterPanelController centerController;
 	
 	/**
+	 * CONSTRUCTOR
 	 * 
 	 * @param newView
 	 * @param newModel
@@ -30,13 +32,23 @@ public class ControlHandler {
 		
 		ImageListController listPanel_C = new ImageListController(view,model);
 		listPanel_C.init();
+		
+		centerController = new CenterPanelController(view,model);
+		centerController.init();
+		
+		
 	}
 	
 	/**
-	 * 
 	 * @return - Primary action controller
 	 */
 	public static PrimaryActionController getPrimActions(){
 		return primaryActions;
 	}
+	
+	public static CenterPanelController getCenterController(){
+		return centerController;
+	}
+	
+
 }

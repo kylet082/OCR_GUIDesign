@@ -6,6 +6,7 @@ public class ModelHandler {
 	private String projectName;
 	
 	/**
+	 * CONSTRUCTOR
 	 * 
 	 * @param newProjName - the new project name
 	 */

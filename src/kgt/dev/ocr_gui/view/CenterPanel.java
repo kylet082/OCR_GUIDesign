@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JViewport;
 import javax.swing.text.View;
@@ -18,16 +19,22 @@ import org.opencv.core.Mat;
 import org.opencv.core.Size;
 import org.opencv.imgcodecs.Imgcodecs;
 
-import kgt.dev.ocr_gui.model.ImageProc;
+import kgt.dev.ocr_gui.utilities.ImageProc;
 
 public class CenterPanel extends Panel{
+	private static final long serialVersionUID = -140751702785592126L;
 
-	private static final long serialVersionUID = 1L;
 	private int width, height;
+	
 	private JScrollPane scrolPane;
+	
 	private JViewport centerViewport;
 	
+	private JPanel view;
+	
 	/**
+	 * CONSTRUCTOR
+	 * 
 	 * @param newWidth - Panel width
 	 * @param newHeight - Panel height
 	 */
@@ -54,20 +61,18 @@ public class CenterPanel extends Panel{
 		this.setLayout(new FlowLayout());
 		((FlowLayout) this.getLayout()).setVgap(0);
 		
+		view = new JPanel();
+		
 		scrolPane = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrolPane.setPreferredSize(new Dimension(getPreferredSize().width-10,getPreferredSize().height-50));
-		centerViewport = scrolPane.getViewport(); 
+		//centerViewport = scrolPane.getViewport(); 
+		scrolPane.setViewportView(view);
 		addBackground(scrolPane.getPreferredSize().width,scrolPane.getPreferredSize().height);
 		//System.out.println(scrolPane.getViewport().getWidth() + " " + scrolPane.getViewport().getHeight());
 		this.add(scrolPane);
 	}
-	/**
-	 * @param img - show the selected image
-	 */
-	public void showSlectedImage(Image img){
-		
-	}
+	
 	
 	/**
 	 * @param p_width - the center panel width
@@ -83,14 +88,28 @@ public class CenterPanel extends Panel{
 		JLabel label = new JLabel();
 		ImageIcon ic = new ImageIcon(backDropImg);
 		label.setIcon(ic);
-		
-		scrolPane.getViewport().add(label);
+		view.add(label);
+		//scrolPane.getViewport().add(label);
 	}
 	
 	/**
-	 * @return
+	 * @return  -center panel viewport (scrollPanel)
 	 */
 	public JViewport getCenterViewPort(){
 		return centerViewport;
+	}
+	
+	/**
+	 * @return - the center panel scrollpanel
+	 */
+	public JScrollPane getScrolPane(){
+		return scrolPane;
+	}
+	
+	/**
+	 * @return -center panel root JPanel 
+	 */
+	public JPanel getView(){
+		return view;
 	}
 }

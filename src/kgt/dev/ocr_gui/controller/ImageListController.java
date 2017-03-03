@@ -27,6 +27,7 @@ public class ImageListController {
 	private List<ImageMatrix> imageList;
 	
 	/**
+	 * CONSTRUCTOR
 	 * 
 	 * @param newView
 	 * @param newModel
@@ -47,7 +48,6 @@ public class ImageListController {
 	 * 
 	 * @param imgMat - image matrix to add listeners to thumb image 
 	 * 				   in the open image list.
-	 * 
 	 */
 	public void imgListListener(ImageMatrix imgMat){
 		
@@ -104,11 +104,22 @@ public class ImageListController {
 					
 					ImageMatrix tmpImgMat = imageList.get(x);
 					
+					//Adds the selected image to the center panel viewport
 					if(tmpImgMat.getIsSelected()){	
+						ControlHandler.getPrimActions().setFocusedImage(tmpImgMat);
 						ControlHandler.getPrimActions().displaySelectedImage(tmpImgMat.getImgMatrix());
+						ControlHandler.getCenterController().btnMnemonic();
+						ControlHandler.getCenterController().zoomControl();
 					}
 				}
 			}
 		});
+	}
+	
+	/**
+	 * 
+	 */
+	public void clearImgFromView(){
+		
 	}
 }

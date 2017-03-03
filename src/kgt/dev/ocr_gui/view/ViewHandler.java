@@ -16,21 +16,31 @@ import javax.swing.JToolBar;
 public class ViewHandler {
 	
 	private int Width, Height,tpWidth,cpWidth,ilWidth;
+	
 	private int[] centerPanelDim;
+	
 	private JFrame rootFrame;
+	
 	private BorderLayout rootLayout;
+	
 	private CenterPanel centerPanel;
+	
 	private ToolPanel toolPanel;
+	
 	private ImageListPanel imgListPanel;
+	
 	private MenuBar menuBar;
 	
+	
 	/**
+	 * CONSTRUCTOR
+	 * 
 	 * @param newFrame - the main content frame
 	 */
 	public ViewHandler(JFrame newFrame){
 		this.rootFrame = newFrame;
 		getNativeResolution(150,200);
-		 setAllPanelWIdths();
+		setAllPanelWIdths();
 	}
 	
 	/**
@@ -50,6 +60,7 @@ public class ViewHandler {
 		frame.setBounds(10, 10, Width, Height);
 		frame.setPreferredSize(new Dimension(Width,Height));
 		//frame.setMinimumSize(new Dimension((Width/7)+(Width/6),Height));
+		frame.setFocusable(true);
 		frame.setResizable(false);
 		menuBar = new MenuBar(frame);
 		menuBar.initMenu();
@@ -68,6 +79,8 @@ public class ViewHandler {
 		
 		imgListPanel = new ImageListPanel(ilWidth,Height);
 		imgListPanel.init();
+		
+		//Dialog handlers
 		
 		frame.add(toolPanel,BorderLayout.WEST);
 		frame.add(centerPanel, BorderLayout.CENTER);
