@@ -56,7 +56,7 @@ public class Entry {
 			
 			//convert to Gray and apply Threshold
 			
-			Imgproc.cvtColor(imgMat, imgMat, Imgproc.COLOR_RGB2GRAY);
+			//Imgproc.cvtColor(imgMat, imgMat, Imgproc.COLOR_RGB2GRAY);
 			Imgproc.threshold(imgMat, imgMat, 123, 255, Imgproc.THRESH_BINARY);
 			
 			//System.out.println("Mat Dims: " + width + " " + height);

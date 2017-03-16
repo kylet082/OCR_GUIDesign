@@ -22,7 +22,7 @@ public class TrainingDialog{
 	
 	private JPanel rootP,paramP,inParamP,textOutPanel;
 	
-	private JButton importBtn, clearSetBtn, saveSetBtn;
+	private JButton importBtn, clearSetBtn, saveSetBtn, exportCSVBtn;
 	
 	private JTextArea setName, setDetails;
 	
@@ -106,14 +106,18 @@ public class TrainingDialog{
 		
 		textOutPanel.add(setDetails);
 		
-		saveSetBtn = new JButton("Save Training Set");
-		saveSetBtn.setPreferredSize(new Dimension(140,25));
+		saveSetBtn = new JButton("Save Set");
+		saveSetBtn.setPreferredSize(new Dimension(100,25));
+		
+		exportCSVBtn= new JButton("Export CSV");
+		exportCSVBtn.setPreferredSize(new Dimension(100,25));
 		
 		inParamP.add(preview);
 		inParamP.add(importBtn);
 		inParamP.add(clearSetBtn);
 		inParamP.add(textOutPanel);
 		inParamP.add(saveSetBtn);
+		inParamP.add(exportCSVBtn);
 		
 		paramP.add(setName);
 		paramP.add(widthLbl);
@@ -148,6 +152,13 @@ public class TrainingDialog{
 	 */
 	public JButton getSaveSetBtn() {
 		return saveSetBtn;
+	}
+	
+	/**
+	 * @return
+	 */
+	public JButton getExportCSVBtn(){
+		return exportCSVBtn;
 	}
 	
 	/**

@@ -3,6 +3,7 @@ package kgt.dev.ocr_gui.controller.dialogs;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
 
 import javax.swing.JFrame;
@@ -11,6 +12,7 @@ import kgt.dev.ocr_gui.controller.ControlHandler;
 import kgt.dev.ocr_gui.model.ImageMatrix;
 import kgt.dev.ocr_gui.model.training.Entry;
 import kgt.dev.ocr_gui.model.training.ZipReader;
+import kgt.dev.ocr_gui.utilities.ExportToCSV;
 import kgt.dev.ocr_gui.utilities.SerializeObj;
 import kgt.dev.ocr_gui.view.dialogs.PreviewChars;
 import kgt.dev.ocr_gui.view.dialogs.TrainingDialog;
@@ -21,7 +23,7 @@ public class TrainingDialogController {
 	
 	private JFrame previewFrame;
 	
-	private ActionListener actionImport,actionClear, actionSave;
+	private ActionListener actionImport,actionClear, actionSave, actionExportCSV;
 	
 	private ZipReader zipReader;
 	
@@ -45,6 +47,7 @@ public class TrainingDialogController {
 		importAction();
 		clearAction();
 		saveAction();
+		exportCSVAction();
 	}
 	
 	/**
@@ -153,5 +156,30 @@ public class TrainingDialogController {
 			}
 		};
 		td.getSaveSetBtn().addActionListener(actionSave);
+	}
+	
+	/**
+	 * Export the current training set to a .CSV file
+	 */
+	public void exportCSVAction(){
+		
+		actionExportCSV = new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Path path = SerializeObj.createDir("WorkBench");
+				File f = new File(path.toString() + "/" + ZipReader.getSetName() + ".csv");
+				
+				try {
+					ExportToCSV.generateCSV(entries.getTrainingSet(), f);
+					System.out.println("CSV created");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}	
+		};
+		td.getExportCSVBtn().addActionListener(actionExportCSV);
 	}
 }

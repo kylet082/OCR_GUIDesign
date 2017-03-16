@@ -128,4 +128,11 @@ public class SampleData implements Serializable{
 	public Sampler getSampler(){
 		return this.sampler;
 	}
+	
+	/**
+	 * @return the convert Matrix 
+	 */
+	public int[][] getConvertedMat(){
+		return convertedMat;
+	}
 }
