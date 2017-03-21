@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import kgt.dev.ocr_gui.controller.dialogs.TrainingDialogController;
 import kgt.dev.ocr_gui.model.ModelHandler;
 import kgt.dev.ocr_gui.view.ViewHandler;
+import kgt.dev.ocr_gui.view.dialogs.NetConfigDialog;
 import kgt.dev.ocr_gui.view.dialogs.TrainingDialog;
 
 public class MenuBarController {
@@ -16,7 +17,7 @@ public class MenuBarController {
 	private ModelHandler model;
 	
 	private ActionListener actionOpen,
-							actionT_Dialog;
+							actionT_Dialog, actionNN_Dialog;
 
 	/**
 	 * CONSTRUCTOR
@@ -34,6 +35,7 @@ public class MenuBarController {
 	public void control(){
 		actionOpen();
 		trainingDialogAction();
+		configNetDialogAction();
 	}
 	/**
 	 * open action event listener
@@ -57,8 +59,8 @@ public class MenuBarController {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				JFrame frame = new JFrame();
-				frame.setBounds(10,10,270,390);
+				final JFrame frame = new JFrame("Create Training Set");
+				frame.setBounds(300,100,270,390);
 				
 				TrainingDialog td = new TrainingDialog(frame);
 				td.init();
@@ -67,6 +69,20 @@ public class MenuBarController {
 				tdc.control();
 			}
 		};
-		view.getMenuBar().getNNMenu().addActionListener(actionT_Dialog);
+		view.getMenuBar().getTrainingItemMenu().addActionListener(actionT_Dialog);
 	} 
+	
+	private void configNetDialogAction(){
+		actionNN_Dialog = new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				final JFrame frame = new JFrame("Network Cofiguration");
+				
+				final NetConfigDialog netConfig = new NetConfigDialog(frame);
+				netConfig.init();
+			}
+		};
+		view.getMenuBar().getNNCofigItem().addActionListener(actionNN_Dialog);
+	}
 }

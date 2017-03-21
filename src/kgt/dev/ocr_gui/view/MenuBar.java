@@ -126,7 +126,11 @@ public class MenuBar {
 	/**
 	 * @return - training set menu item menu 
 	 */
-	public JMenuItem getNNMenu(){
+	public JMenuItem getTrainingItemMenu(){
 		return traingSetItem;
+	}
+	
+	public JMenuItem getNNCofigItem(){
+		return configNNItem;
 	}
 }
