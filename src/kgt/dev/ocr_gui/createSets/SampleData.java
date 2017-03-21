@@ -1,4 +1,4 @@
-package kgt.dev.ocr_gui.model.training;
+package kgt.dev.ocr_gui.createSets;
 
 import java.io.Serializable;
 
@@ -134,5 +134,9 @@ public class SampleData implements Serializable{
 	 */
 	public int[][] getConvertedMat(){
 		return convertedMat;
+	}
+	
+	public boolean getBiPolarData(int x,int y){
+		return biPolarMatrix[x][y];
 	}
 }

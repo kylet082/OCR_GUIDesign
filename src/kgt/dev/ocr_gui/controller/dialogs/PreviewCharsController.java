@@ -8,9 +8,9 @@ import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import kgt.dev.ocr_gui.model.training.Entry;
-import kgt.dev.ocr_gui.model.training.SampleData;
-import kgt.dev.ocr_gui.model.training.Sampler;
+import kgt.dev.ocr_gui.createSets.Entry;
+import kgt.dev.ocr_gui.createSets.SampleData;
+import kgt.dev.ocr_gui.createSets.Sampler;
 import kgt.dev.ocr_gui.view.dialogs.PreviewChars;
 
 public class PreviewCharsController {

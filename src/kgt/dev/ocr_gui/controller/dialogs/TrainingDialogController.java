@@ -7,11 +7,12 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import kgt.dev.ocr_gui.controller.ControlHandler;
+import kgt.dev.ocr_gui.createSets.Entry;
+import kgt.dev.ocr_gui.createSets.ZipReader;
 import kgt.dev.ocr_gui.model.ImageMatrix;
-import kgt.dev.ocr_gui.model.training.Entry;
-import kgt.dev.ocr_gui.model.training.ZipReader;
 import kgt.dev.ocr_gui.utilities.ExportToCSV;
 import kgt.dev.ocr_gui.utilities.SerializeObj;
 import kgt.dev.ocr_gui.view.dialogs.PreviewChars;
@@ -71,6 +72,7 @@ public class TrainingDialogController {
 					
 					outPutSetDetails();
 					
+					//display char previews
 					if(td.getPreview().isSelected()){
 						previewFrame = new JFrame("Character Previews");
 						//display char previews
@@ -169,9 +171,11 @@ public class TrainingDialogController {
 			public void actionPerformed(ActionEvent arg0) {
 				Path path = SerializeObj.createDir("WorkBench");
 				File f = new File(path.toString() + "/" + ZipReader.getSetName() + ".csv");
-				
+				//entries.getTrainingSet().getTrainingSet().get(0).getSampler().print();
 				try {
 					ExportToCSV.generateCSV(entries.getTrainingSet(), f);
+					JOptionPane.showMessageDialog(previewFrame, "CSV File created",
+							"File Export", JOptionPane.PLAIN_MESSAGE);
 					System.out.println("CSV created");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -179,7 +183,10 @@ public class TrainingDialogController {
 				}
 				
 			}	
+			
 		};
+		
 		td.getExportCSVBtn().addActionListener(actionExportCSV);
+		
 	}
 }

@@ -1,4 +1,4 @@
-package kgt.dev.ocr_gui.model.training;
+package kgt.dev.ocr_gui.createSets;
 
 import java.awt.Color;
 import java.awt.Graphics;

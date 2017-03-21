@@ -1,4 +1,4 @@
-package kgt.dev.ocr_gui.model.training;
+package kgt.dev.ocr_gui.createSets;
 
 import java.io.Serializable;
 import java.util.ArrayList;
