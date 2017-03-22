@@ -32,10 +32,18 @@ public class NetConfigDialog {
 	
 	private final String[] netCombo = {"SOM","Feed-Forward"};
 	
+	/**
+	 * CONSTRUCTOR
+	 * 
+	 * @param newFrame
+	 */
 	public NetConfigDialog(JFrame newFrame){
 		this.frame = newFrame;
 	}
 	
+	/**
+	 * Initialize the network config Dialog
+	 */
 	public void init(){
 		frame.setBounds(300,150,250,350);
 		frame.setPreferredSize(new Dimension(200,300));
@@ -91,5 +99,67 @@ public class NetConfigDialog {
 		
 		frame.add(rootPanel);
 		frame.setVisible(true);
+	}
+	
+	/**
+	 * @return
+	 */
+	public JFrame getFrame(){
+		return this.frame;
+	}
+	/**
+	 * @return - label
+	 */
+	public JLabel getNetLabel(){
+		return netLbl;
+	}
+	
+	/**
+	 * @param text - set label
+	 */
+	public void setNetLabel(String text){
+		this.netLbl.setText(text);
+	}
+	
+	/**
+	 * @return - text area
+	 */
+	public JTextArea getConfigText(){
+		return configText;
+	}
+	
+	/**
+	 * @param text
+	 */
+	public void setConfigText(String text){
+		this.configText.setText(text);;
+	}
+	
+	/**
+	 * @return - load a training set
+	 */
+	public JButton getLoadBtn(){
+		return loadBtn;
+	}
+	
+	/** 
+	 * @return - clear loaded training set button
+	 */
+	public JButton getClearBtn(){
+		return clearBtn;
+	}
+	
+	/**
+	 * @return - create network button
+	 */
+	public JButton getCreateBtn(){
+		return createBtn;
+	}
+
+	/**
+	 * @return - save network button
+	 */
+	public JButton getSaveBtn(){
+		return saveBtn;
 	}
 }

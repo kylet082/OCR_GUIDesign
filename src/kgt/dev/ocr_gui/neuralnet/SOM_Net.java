@@ -11,7 +11,7 @@ import org.encog.neural.som.training.clustercopy.SOMClusterCopyTraining;
 import kgt.dev.ocr_gui.createSets.SampleData;
 import kgt.dev.ocr_gui.createSets.TrainingSet;
 
-public class SOM_Net {
+public class SOM_Net extends NeuralNets{
 	
 	private SOM network;
 	
@@ -30,6 +30,7 @@ public class SOM_Net {
 	 * @param newTs - training set to add to the self organizing map
 	 */
 	public SOM_Net(TrainingSet newTs){
+		super(newTs);
 		this.ts = newTs;
 	}
 	
@@ -42,6 +43,7 @@ public class SOM_Net {
 	 * @param sample_height
 	 */
 	public SOM_Net(int sample_width, int sample_height){
+		super(sample_width,sample_height);
 		this.SAMPLE_WIDTH = sample_width;
 		this.SAMPLE_HEIGHT = sample_height;
 	}
@@ -61,7 +63,8 @@ public class SOM_Net {
 		}
 	}
 	
-	public void trainSOM(){
+	@Override
+	public void train(){
 		
 		try{
 			int inputNeurons = this.SAMPLE_WIDTH * this.SAMPLE_HEIGHT;
@@ -140,7 +143,8 @@ public class SOM_Net {
 	 * @param test - the character in question
 	 * @return - the winning character
 	 */
-	public char getWinner(SampleData test){
+	@Override
+	public char recognise(SampleData test){
 		char best = ' ';
 		try{
 			MLData input = new BasicMLData(SAMPLE_WIDTH * SAMPLE_HEIGHT);

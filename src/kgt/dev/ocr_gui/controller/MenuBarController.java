@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
+import kgt.dev.ocr_gui.controller.dialogs.NetConfigController;
 import kgt.dev.ocr_gui.controller.dialogs.TrainingDialogController;
 import kgt.dev.ocr_gui.model.ModelHandler;
 import kgt.dev.ocr_gui.view.ViewHandler;
@@ -84,6 +85,9 @@ public class MenuBarController {
 				
 				final NetConfigDialog netConfig = new NetConfigDialog(frame);
 				netConfig.init();
+				
+				final NetConfigController controller = new NetConfigController(netConfig);
+				controller.control();
 			}
 		};
 		view.getMenuBar().getNNCofigItem().addActionListener(actionNN_Dialog);

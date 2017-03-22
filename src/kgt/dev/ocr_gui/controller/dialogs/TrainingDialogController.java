@@ -81,8 +81,11 @@ public class TrainingDialogController {
 						
 						PreviewCharsController pcc = new PreviewCharsController(pc,entries);
 						pcc.control();
-						
-						System.out.println("Preview selected ");
+					
+					}else{
+						JOptionPane.showMessageDialog(td.getFrame(),
+								"Import Successful", "Done",
+								JOptionPane.INFORMATION_MESSAGE);
 					}
 				}
 				else{
@@ -124,6 +127,9 @@ public class TrainingDialogController {
 					}
 					control();
 					clearData();
+					JOptionPane.showMessageDialog(td.getFrame(),
+							"Set successfully removed", "Done",
+							JOptionPane.INFORMATION_MESSAGE);
 				}else{
 					System.out.println("Nothing to clear !");
 				}
@@ -155,6 +161,9 @@ public class TrainingDialogController {
 				Path path = SerializeObj.createDir("TrainingSets");
 				File f = new File(path.toString() +"/"+ ZipReader.getSetName() +".ser");
 				SerializeObj.save(f, entries.getTrainingSet());
+				JOptionPane.showMessageDialog(td.getFrame(),
+						"Save Successful", "Done",
+						JOptionPane.INFORMATION_MESSAGE);
 			}
 		};
 		td.getSaveSetBtn().addActionListener(actionSave);
@@ -174,19 +183,15 @@ public class TrainingDialogController {
 				//entries.getTrainingSet().getTrainingSet().get(0).getSampler().print();
 				try {
 					ExportToCSV.generateCSV(entries.getTrainingSet(), f);
-					JOptionPane.showMessageDialog(previewFrame, "CSV File created",
-							"File Export", JOptionPane.PLAIN_MESSAGE);
-					System.out.println("CSV created");
+					JOptionPane.showMessageDialog(td.getFrame(),
+							"CSV export successful", "Done",
+							JOptionPane.INFORMATION_MESSAGE);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
 			}	
-			
 		};
-		
 		td.getExportCSVBtn().addActionListener(actionExportCSV);
-		
 	}
 }
