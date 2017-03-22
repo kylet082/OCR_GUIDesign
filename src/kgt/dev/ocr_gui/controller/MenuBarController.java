@@ -72,6 +72,9 @@ public class MenuBarController {
 		view.getMenuBar().getTrainingItemMenu().addActionListener(actionT_Dialog);
 	} 
 	
+	/**
+	 * initialize the Neural Network configuration dialog
+	 */
 	private void configNetDialogAction(){
 		actionNN_Dialog = new ActionListener(){
 
