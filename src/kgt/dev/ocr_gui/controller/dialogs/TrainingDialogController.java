@@ -10,9 +10,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import kgt.dev.ocr_gui.controller.ControlHandler;
-import kgt.dev.ocr_gui.createSets.Entry;
-import kgt.dev.ocr_gui.createSets.ZipReader;
 import kgt.dev.ocr_gui.model.ImageMatrix;
+import kgt.dev.ocr_gui.neuralnet.createSets.Entry;
+import kgt.dev.ocr_gui.neuralnet.createSets.ZipReader;
 import kgt.dev.ocr_gui.utilities.ExportToCSV;
 import kgt.dev.ocr_gui.utilities.SerializeObj;
 import kgt.dev.ocr_gui.view.dialogs.PreviewChars;

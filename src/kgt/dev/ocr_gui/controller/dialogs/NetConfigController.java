@@ -6,12 +6,15 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import kgt.dev.ocr_gui.controller.ControlHandler;
-import kgt.dev.ocr_gui.createSets.TrainingSet;
+import kgt.dev.ocr_gui.model.ModelHandler;
+import kgt.dev.ocr_gui.neuralnet.createSets.TrainingSet;
 import kgt.dev.ocr_gui.view.dialogs.NetConfigDialog;
 
 public class NetConfigController {
 	
 	private NetConfigDialog view;
+	
+	private ModelHandler model;
 	
 	private TrainingSet ts = null;
 	
@@ -23,8 +26,9 @@ public class NetConfigController {
 	 * 
 	 * @param newView
 	 */
-	public NetConfigController(NetConfigDialog newView){
+	public NetConfigController(NetConfigDialog newView, ModelHandler newModel){
 		this.view = newView;
+		this.model = newModel;
 	}
 	
 	/**

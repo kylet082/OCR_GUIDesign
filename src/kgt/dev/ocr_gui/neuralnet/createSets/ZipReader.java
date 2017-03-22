@@ -1,4 +1,4 @@
-package kgt.dev.ocr_gui.createSets;
+package kgt.dev.ocr_gui.neuralnet.createSets;
 
 import java.io.File;
 import java.io.FileNotFoundException;

@@ -1,4 +1,4 @@
-package kgt.dev.ocr_gui.createSets;
+package kgt.dev.ocr_gui.neuralnet.createSets;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -12,11 +12,11 @@ import javax.swing.JLabel;
 import org.opencv.core.Mat;
 import org.opencv.imgcodecs.Imgcodecs;
 
-import kgt.dev.ocr_gui.createSets.TrainingSet;
-import kgt.dev.ocr_gui.createSets.ZipReader;
 import kgt.dev.ocr_gui.model.ImageMatrix;
 import kgt.dev.ocr_gui.model.ModelHandler;
 import kgt.dev.ocr_gui.model.OpenImages;
+import kgt.dev.ocr_gui.neuralnet.createSets.TrainingSet;
+import kgt.dev.ocr_gui.neuralnet.createSets.ZipReader;
 import kgt.dev.ocr_gui.utilities.ImageProc;
 import kgt.dev.ocr_gui.utilities.SerializeObj;
 import kgt.dev.ocr_gui.view.ViewHandler;

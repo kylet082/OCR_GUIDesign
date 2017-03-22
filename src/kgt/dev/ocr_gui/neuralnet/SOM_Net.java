@@ -8,16 +8,12 @@ import org.encog.ml.data.basic.BasicMLDataSet;
 import org.encog.neural.som.SOM;
 import org.encog.neural.som.training.clustercopy.SOMClusterCopyTraining;
 
-import kgt.dev.ocr_gui.createSets.SampleData;
-import kgt.dev.ocr_gui.createSets.TrainingSet;
+import kgt.dev.ocr_gui.neuralnet.createSets.SampleData;
+import kgt.dev.ocr_gui.neuralnet.createSets.TrainingSet;
 
 public class SOM_Net extends NeuralNets{
 	
 	private SOM network;
-	
-	private TrainingSet ts;
-	
-	private int SAMPLE_WIDTH, SAMPLE_HEIGHT, SET_SIZE;
 	
 	private String message;
 	
@@ -31,7 +27,7 @@ public class SOM_Net extends NeuralNets{
 	 */
 	public SOM_Net(TrainingSet newTs){
 		super(newTs);
-		this.ts = newTs;
+		this.setTrained(false);
 	}
 	
 	/**
@@ -44,8 +40,7 @@ public class SOM_Net extends NeuralNets{
 	 */
 	public SOM_Net(int sample_width, int sample_height){
 		super(sample_width,sample_height);
-		this.SAMPLE_WIDTH = sample_width;
-		this.SAMPLE_HEIGHT = sample_height;
+		this.setTrained(false);
 	}
 	
 	/**
@@ -54,12 +49,12 @@ public class SOM_Net extends NeuralNets{
 	 */
 	public void setSampleDim(){
 		
-		if(ts.getTrainingSet().isEmpty()){
+		if(this.trainSet.getTrainingSet().isEmpty()){
 			throw new IndexOutOfBoundsException();
 		}else{
-			this.SET_SIZE = this.ts.getTrainingSet().size();
-			this.SAMPLE_WIDTH = this.ts.getTrainingSet().get(0).getWidth();
-			this.SAMPLE_HEIGHT = this.ts.getTrainingSet().get(0).getHeight();
+			this.SET_SIZE = this.trainSet.getTrainingSet().size();
+			this.SAMPLE_WIDTH = this.trainSet.getTrainingSet().get(0).getWidth();
+			this.SAMPLE_HEIGHT = this.trainSet.getTrainingSet().get(0).getHeight();
 		}
 	}
 	
@@ -77,7 +72,7 @@ public class SOM_Net extends NeuralNets{
 				final MLData data = new BasicMLData(inputNeurons);
 				
 				int index =0;
-				final SampleData ds = this.ts.getTrainingSet().get(e);
+				final SampleData ds = this.trainSet.getTrainingSet().get(e);
 				
 				for(int x = 0; x < ds.getWidth();x++){
 					for(int y = 0; y < ds.getHeight();y++){
@@ -97,7 +92,7 @@ public class SOM_Net extends NeuralNets{
 			
 			SOMClusterCopyTraining train = new SOMClusterCopyTraining(this.network,dataSet);
 			train.iteration();
-			
+			this.setTrained(true);
 		}catch(Exception e){
 			setMessage("Error Training the Self Orginising Map");
 		}
@@ -119,7 +114,7 @@ public class SOM_Net extends NeuralNets{
 			MLData DataIn = new BasicMLData(SAMPLE_WIDTH * SAMPLE_HEIGHT);
 			
 			int index = 0;
-			SampleData ds = ts.getTrainingSet().get(i);
+			SampleData ds = this.trainSet.getTrainingSet().get(i);
 			
 			for(int x = 0; x < ds.getWidth(); x++){
 				for(int y = 0; y < ds.getHeight(); y++){
@@ -180,11 +175,12 @@ public class SOM_Net extends NeuralNets{
 	 */
 	public void addTrainingSet(TrainingSet newTs){
 		
-		this.ts = newTs;
+		this.trainSet = newTs;
 		if(newTs.getTrainingSet().isEmpty()){
 			this.setMessage("Error, there is no data in the training set!");
 			throw new NullPointerException();
 		}else{
+			this.setTrained(false);
 			this.SET_SIZE = newTs.getTrainingSet().size();
 		}
 	}
@@ -194,13 +190,15 @@ public class SOM_Net extends NeuralNets{
 	 * 
 	 * @param newMessage
 	 */
-	private void setMessage(String newMessage){
+	@Override
+	protected void setMessage(String newMessage){
 		this.message = newMessage;
 	}
 	
 	/**
 	 * @return - get the current alert message
 	 */
+	@Override
 	public String getMessage(){
 		return message;
 	}

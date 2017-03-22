@@ -86,7 +86,7 @@ public class MenuBarController {
 				final NetConfigDialog netConfig = new NetConfigDialog(frame);
 				netConfig.init();
 				
-				final NetConfigController controller = new NetConfigController(netConfig);
+				final NetConfigController controller = new NetConfigController(netConfig,model);
 				controller.control();
 			}
 		};
