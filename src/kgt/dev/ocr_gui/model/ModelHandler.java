@@ -5,7 +5,8 @@ import kgt.dev.ocr_gui.neuralnet.NeuralNets;
 public class ModelHandler {
 	
 	private OpenImages openImages;
-	private NeuralNetworkModel netModel; 
+	private NeuralNetworkModel netModel;
+	private TrainingSet trainingSet = null;
 	private String projectName;
 	
 	
@@ -36,7 +37,28 @@ public class ModelHandler {
 	/**
 	 * @return - current Neural Network
 	 */
-	public NeuralNetworkModel getNetModel(){
-		return netModel;
+	public NeuralNets getNeuralNet(){
+		return netModel.getNeuralNet();
+	}
+	
+	/**
+	 * @param som
+	 */
+	public void setNetModel(NeuralNets net){
+		this.netModel.setNeuralNet(net);;
+	}
+	
+	/**
+	 * @param ts - training set
+	 */
+	public void setNetTrainingSet(TrainingSet ts){
+		this.trainingSet = ts;
+	}
+	
+	/**
+	 * @return - training set
+	 */
+	public TrainingSet getTrainingSet(){
+		return this.trainingSet;
 	}
 }

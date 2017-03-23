@@ -113,13 +113,13 @@ public class SampleData implements Serializable{
 	 * @return matrix height
 	 */
 	public int getHeight(){
-		return data.cols();
+		return this.convertedMat[0].length;
 	}
 	/**
 	 * @return matrix width
 	 */
 	public int getWidth(){
-		return data.rows();
+		return this.convertedMat.length;
 	}
 	
 	/**

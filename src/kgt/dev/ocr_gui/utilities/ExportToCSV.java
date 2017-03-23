@@ -5,8 +5,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import kgt.dev.ocr_gui.model.TrainingSet;
 import kgt.dev.ocr_gui.neuralnet.createSets.SampleData;
-import kgt.dev.ocr_gui.neuralnet.createSets.TrainingSet;
 
 public class ExportToCSV {
 	

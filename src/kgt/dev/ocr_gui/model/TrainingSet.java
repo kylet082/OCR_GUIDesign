@@ -1,8 +1,10 @@
-package kgt.dev.ocr_gui.neuralnet.createSets;
+package kgt.dev.ocr_gui.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import kgt.dev.ocr_gui.neuralnet.createSets.SampleData;
 
 public class TrainingSet implements Serializable{
 	private static final long serialVersionUID = 4782378682627313991L;

@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.opencv.core.Mat;
 import org.opencv.imgcodecs.Imgcodecs;
@@ -15,7 +16,7 @@ import org.opencv.imgcodecs.Imgcodecs;
 import kgt.dev.ocr_gui.model.ImageMatrix;
 import kgt.dev.ocr_gui.model.ModelHandler;
 import kgt.dev.ocr_gui.model.OpenImages;
-import kgt.dev.ocr_gui.neuralnet.createSets.TrainingSet;
+import kgt.dev.ocr_gui.model.TrainingSet;
 import kgt.dev.ocr_gui.neuralnet.createSets.ZipReader;
 import kgt.dev.ocr_gui.utilities.ImageProc;
 import kgt.dev.ocr_gui.utilities.SerializeObj;
@@ -85,9 +86,15 @@ public class PrimaryActionController {
 		}
 	}
 	
+	/**
+	 * @return - sample data obj
+	 */
 	public TrainingSet trainingSetChooser(){
 		TrainingSet ts = null;
-		fc = new JFileChooser();
+		fc = new JFileChooser("./TrainingSets");
+		FileNameExtensionFilter filter = new FileNameExtensionFilter(
+		"Serialized Samples","ser");
+		fc.setFileFilter(filter);
 		if(fc.showOpenDialog(view.getFrame()) == JFileChooser.APPROVE_OPTION){
 			file = fc.getSelectedFile();
 			ts=(TrainingSet)SerializeObj.load(file);

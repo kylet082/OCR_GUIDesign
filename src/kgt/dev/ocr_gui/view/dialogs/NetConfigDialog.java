@@ -30,7 +30,7 @@ public class NetConfigDialog {
 	
 	private JCheckBox automateCheck;
 	
-	private final String[] netCombo = {"SOM","Feed-Forward"};
+	private final String[] netCombo = {"Select a Network","SOM","Feed Forward"};
 	
 	/**
 	 * CONSTRUCTOR
@@ -45,7 +45,7 @@ public class NetConfigDialog {
 	 * Initialize the network config Dialog
 	 */
 	public void init(){
-		frame.setBounds(300,150,250,350);
+		frame.setBounds(300,150,250,370);
 		frame.setPreferredSize(new Dimension(200,300));
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
@@ -59,17 +59,16 @@ public class NetConfigDialog {
 		topPanel.add(netType);
 		topPanel.add(networkBox);
 		
-		top1Panel = new JPanel();
-		automateCheck = new JCheckBox("Automate Creation");
-		top1Panel.add(automateCheck);
 		
 		midPanel = new JPanel();
 		loadBtn = new JButton("Load Sets");
 		clearBtn = new JButton("Clear Set");
+		loadBtn.setEnabled(false);
+		clearBtn.setEnabled(false);
 		loadBtn.setPreferredSize(new Dimension(frame.getPreferredSize().width/2, 30));
 		clearBtn.setPreferredSize(new Dimension(frame.getPreferredSize().width/2, 30));
 		midPanel.add(loadBtn);
-		midPanel.add(clearBtn);
+		midPanel.add(clearBtn);	
 		
 		mid1Panel = new JPanel();
 		netLbl = new JLabel("No Network set");
@@ -79,7 +78,7 @@ public class NetConfigDialog {
 		Border textBorder = BorderFactory.createTitledBorder("Configuration Parameters");
 		btmPanel.setBorder(textBorder);
 		configText = new JTextArea();
-		configText.setPreferredSize(new Dimension(190,80));
+		configText.setPreferredSize(new Dimension(190,140));
 		btmPanel.add(configText);
 		
 		btm1Panel = new JPanel();
@@ -87,11 +86,11 @@ public class NetConfigDialog {
 		saveBtn = new JButton("Save");
 		createBtn.setPreferredSize(new Dimension(frame.getPreferredSize().width/2, 30));
 		saveBtn.setPreferredSize(new Dimension(frame.getPreferredSize().width/2, 30));
+		saveBtn.setEnabled(false);
 		btm1Panel.add(createBtn);
 		btm1Panel.add(saveBtn);
 		
 		rootPanel.add(topPanel);
-		rootPanel.add(top1Panel);
 		rootPanel.add(midPanel);
 		rootPanel.add(mid1Panel);
 		rootPanel.add(btmPanel);
@@ -161,5 +160,23 @@ public class NetConfigDialog {
 	 */
 	public JButton getSaveBtn(){
 		return saveBtn;
+	}
+	
+	/**
+	 * @return
+	 */
+	public JComboBox<String> getNetComboBox(){
+		return networkBox;
+	}
+	
+	/**
+	 * @return
+	 */
+	public boolean getAutoCheck(){
+		return automateCheck.isSelected();
+	}
+	
+	public JCheckBox getAutoCheckBox(){
+		return automateCheck;
 	}
 }

@@ -1,9 +1,14 @@
 package kgt.dev.ocr_gui.model;
 
+import java.io.Serializable;
+
 import kgt.dev.ocr_gui.neuralnet.NeuralNets;
 
-public class NeuralNetworkModel {
-	
+public class NeuralNetworkModel implements Serializable {
+
+	private static final long serialVersionUID = 7020102062297388859L;
+
+
 	private NeuralNets net;
 	
 	public NeuralNetworkModel(NeuralNets newNet){

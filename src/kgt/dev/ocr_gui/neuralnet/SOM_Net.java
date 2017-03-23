@@ -8,8 +8,8 @@ import org.encog.ml.data.basic.BasicMLDataSet;
 import org.encog.neural.som.SOM;
 import org.encog.neural.som.training.clustercopy.SOMClusterCopyTraining;
 
+import kgt.dev.ocr_gui.model.TrainingSet;
 import kgt.dev.ocr_gui.neuralnet.createSets.SampleData;
-import kgt.dev.ocr_gui.neuralnet.createSets.TrainingSet;
 
 public class SOM_Net extends NeuralNets{
 	
@@ -38,8 +38,7 @@ public class SOM_Net extends NeuralNets{
 	 * @param sample_width
 	 * @param sample_height
 	 */
-	public SOM_Net(int sample_width, int sample_height){
-		super(sample_width,sample_height);
+	public SOM_Net(){
 		this.setTrained(false);
 	}
 	

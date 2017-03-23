@@ -7,6 +7,7 @@ import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 
 import kgt.dev.ocr_gui.model.ImageMatrix;
+import kgt.dev.ocr_gui.model.TrainingSet;
 
 public class Entry {
 	

@@ -1,10 +1,13 @@
 package kgt.dev.ocr_gui.neuralnet;
 
-import kgt.dev.ocr_gui.neuralnet.createSets.SampleData;
-import kgt.dev.ocr_gui.neuralnet.createSets.TrainingSet;
+import java.io.Serializable;
 
-public abstract class NeuralNets {
-	
+import kgt.dev.ocr_gui.model.TrainingSet;
+import kgt.dev.ocr_gui.neuralnet.createSets.SampleData;
+
+public abstract class NeuralNets implements Serializable {
+	private static final long serialVersionUID = -7152659687984580246L;
+
 	/**
 	 * The training set list
 	 */
@@ -18,7 +21,7 @@ public abstract class NeuralNets {
 	/**
 	 * Param for the training set matrix
 	 */
-	protected int SAMPLE_WIDTH,SAMPLE_HEIGHT,SET_SIZE;
+	public int SAMPLE_WIDTH, SAMPLE_HEIGHT, SET_SIZE;
 	
 	/**
 	 * @param newTs
@@ -31,10 +34,7 @@ public abstract class NeuralNets {
 	 * @param width
 	 * @param height
 	 */
-	public NeuralNets(int width,int height) {
-		this.SAMPLE_WIDTH = width;
-		this.SAMPLE_HEIGHT = height;
-	}
+	public NeuralNets() {}
 	
 	/**
 	 * Train method for the neural networks
