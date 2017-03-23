@@ -35,6 +35,15 @@ public class OpenImages {
 	}
 	
 	/**
+	 * Remove an image at position x
+	 * 
+	 * @param x - position of image
+	 */
+	public void removeImage(int x){
+		imageList.remove(x);
+	}
+	
+	/**
 	 * @return project name
 	 */
 	public String getProjectName(){

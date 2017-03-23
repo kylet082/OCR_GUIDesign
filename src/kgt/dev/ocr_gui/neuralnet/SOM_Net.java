@@ -12,7 +12,9 @@ import kgt.dev.ocr_gui.model.TrainingSet;
 import kgt.dev.ocr_gui.neuralnet.createSets.SampleData;
 
 public class SOM_Net extends NeuralNets{
-	
+
+	private static final long serialVersionUID = 7966537469301647951L;
+
 	private SOM network;
 	
 	private String message;

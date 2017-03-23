@@ -118,6 +118,19 @@ public class PrimaryActionController {
 		return file;
 	}
 	
+	public void upDateImgList(){
+		//clear the viewport in the scrollpane
+		view.getImgListPane().getImgListViewPort().removeAll();
+		
+		for(int x = 0; x < model.getOpenImages().getImageList().size(); x++ ){
+			ImageMatrix tmp  = model.getOpenImages().getImageList().get(x);
+			view.getImgListPane().addOpenedImgs(tmp);
+			listController.imgListListener(tmp);
+			view.getImgListPane().getImgListViewPort().revalidate();
+			view.getImgListPane().getImgListViewPort().repaint();
+		}
+	}
+	
 	/**
 	 * Adds the opened image to the open project and adds
 	 * the thumb image to the Image list.
@@ -133,14 +146,7 @@ public class PrimaryActionController {
 		
 		//add the thumb images to the list
 		if(!openImages.getImageList().isEmpty()){
-			//clear the viewport in the scrollpane
-			view.getImgListPane().getImgListViewPort().removeAll();
-			
-			for(int x = 0; x < model.getOpenImages().getImageList().size(); x++ ){
-				ImageMatrix tmp  = model.getOpenImages().getImageList().get(x);
-				view.getImgListPane().addOpenedImgs(tmp);
-				listController.imgListListener(tmp);
-			}
+			upDateImgList();
 		}
 		else{
 			System.out.println("Something went wrong loading the image icon");
@@ -160,6 +166,10 @@ public class PrimaryActionController {
 		view.getCenterPanel().getView().setBackground(new Color(44,62,80));
 		
 		view.getCenterPanel().getView().revalidate();
+	}
+	
+	public void removeImageFromList(){
+		
 	}
 	
 	/**

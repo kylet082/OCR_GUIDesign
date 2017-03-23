@@ -26,6 +26,8 @@ public class ImageListController {
 	private ImageMatrix focusImg = null;
 	private List<ImageMatrix> imageList;
 	
+	private ActionListener actionOpen, actionCopy, actionSave;
+	
 	/**
 	 * CONSTRUCTOR
 	 * 
@@ -42,6 +44,8 @@ public class ImageListController {
 	 */
 	public void init(){
 		addImgToViewBtn();
+		clearImgFromView();
+		openAction();
 	}
 	
 	/**
@@ -108,8 +112,8 @@ public class ImageListController {
 					if(tmpImgMat.getIsSelected()){	
 						ControlHandler.getPrimActions().setFocusedImage(tmpImgMat);
 						ControlHandler.getPrimActions().displaySelectedImage(tmpImgMat.getImgMatrix());
-						ControlHandler.getCenterController().btnMnemonic();
-						ControlHandler.getCenterController().zoomControl();
+						//ControlHandler.getCenterController().btnMnemonic();
+						//ControlHandler.getCenterController().zoomControl();
 					}
 				}
 			}
@@ -121,5 +125,66 @@ public class ImageListController {
 	 */
 	public void clearImgFromView(){
 		
+		imageList = model.getOpenImages().getImageList();
+		view.getImgListPane().getClearBtn().addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				for(int x = 0; x < imageList.size();x++){
+					ImageMatrix tmpImgMat = imageList.get(x);
+					
+					if(tmpImgMat.getIsSelected()){
+						imageList.remove(x);
+						ControlHandler.getPrimActions().upDateImgList();
+						view.getImgListPane().revalidate();
+					}
+				}	
+			}
+		});
+	}
+	
+	/**
+	 * Open new image via the interface button
+	 */
+	public void openAction(){
+		
+		actionOpen = new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				ControlHandler.getPrimActions().ImgChooser(PrimaryActionController.OPEN);
+			}
+		};
+		view.getImgListPane().getOpenBtn().addActionListener(actionOpen);
+	}
+	
+	/**
+	 * Copy the image and add it to the imag list
+	 */
+	public void copyAction(){
+		actionCopy = new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		};
+	}
+	
+	/**
+	 * Save the current image
+	 */
+	public void saveAction(){
+		actionSave = new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		};
 	}
 }
