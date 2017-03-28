@@ -68,7 +68,7 @@ public class DocumentAnalysis {
 			 int[] binDim = new int[4];
 			 
 			 if(histData[x] > 0 && last == 0.0){
-				 binDim[0] = x+2;
+				 binDim[1] = x;
 				 lineBins.add(binDim);
 			 }
 			 last = histData[x];
@@ -79,7 +79,7 @@ public class DocumentAnalysis {
 		 for(y = 0; y < histData.length;y++){
 			 
 			 if(histData[y] == 0 && last > 0.0){
-				 lineBins.get(y)[2] = y + 2;
+				 lineBins.get(y)[3] = y + 2;
 				 step++;
 			 }
 			 last = histData[y];
@@ -88,50 +88,40 @@ public class DocumentAnalysis {
 		 //Finds end point and the start point along the X_Axis
 		 for(int q = 0; q < lineBins.size(); q++){
 			 int[] bins = lineBins.get(q);
-			 boolean check;
-			 int temp;
-			 int right_X = this.dst.rows();
-			 int left_X = 0;
 			 
-			 for(y = bins[0]; y < bins[2];y++){
-				 check = false;
-				 
-				 //starting point
+			 int temp;
+			 int start_X = this.dst.cols();
+			 int end_X = 0;
+			 
+			 for(y = bins[1]; y < bins[3];y++){
 				 for(x = 0; x < this.dst.cols(); x++){
 					 
 					 double[] index = this.dst.get(y, x);
 					 if(index[0] == 0.0){
-						 
 						 temp = x;
-						 if(left_X < temp){
-							 left_X = temp;
-							 lineBins.get(q)[1] = left_X-2;
-						 }
-						 check = true;
-					 }
-				 }
-				 
-				 //ending point
-				 for(y = bins[0]; y < bins[2]; y++){
-					 check = false;
-					 
-					 for(x = this.dst.cols() - 1; x > 0; x--){
-						 
-						 double[] index = this.dst.get(y,x);
-						 if(index[0] == 0.0){
-							 
-							 temp = x;
-							 if(right_X > temp){
-								 right_X = temp;
-								 lineBins.get(q)[3] = right_X + 2;
-							 }
-							 check = true;
+						 if(temp < start_X){
+							 start_X = temp;
+							 lineBins.get(q)[0] = start_X;
 						 }
 					 }
 				 }
 			 }
-			 
-		}
+				 
+			 //ending point
+			 for(y = bins[1]; y < bins[3]; y++){
+				 for(x = this.dst.cols() - 1; x > 0; x--){
+					 
+					 double[] index = this.dst.get(y,x);
+					 if(index[0] == 0.0){
+						 temp = x;
+						 if(temp > end_X){
+							 end_X = temp;
+							 lineBins.get(q)[2] = end_X;
+						 }
+					 }
+				 }
+			 }
+		 }
 	 }
 	 
 	 /**
