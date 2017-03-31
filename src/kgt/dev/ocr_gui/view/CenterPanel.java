@@ -1,5 +1,6 @@
 package kgt.dev.ocr_gui.view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -30,6 +31,8 @@ public class CenterPanel extends Panel{
 	
 	private JViewport centerViewport;
 	
+	private DisplayImage display;
+	
 	private JPanel view;
 	
 	/**
@@ -56,10 +59,11 @@ public class CenterPanel extends Panel{
 		this.setPreferredSize(new Dimension(width,height));
 		this.setMinimumSize(new Dimension(width,height));
 		this.setMaximumSize(new Dimension(width,height));
-		this.setBackground(new Color(189, 189, 189));
+		this.setBackground(new Color(149, 165, 166));
 		
-		this.setLayout(new FlowLayout());
-		((FlowLayout) this.getLayout()).setVgap(0);
+		/*this.setLayout(new FlowLayout());
+		((FlowLayout) this.getLayout()).setVgap(0);*/
+		this.setLayout(new BorderLayout());
 		
 		view = new JPanel();
 		
@@ -68,9 +72,10 @@ public class CenterPanel extends Panel{
 		scrolPane.setPreferredSize(new Dimension(getPreferredSize().width-10,getPreferredSize().height-50));
 		//centerViewport = scrolPane.getViewport(); 
 		scrolPane.setViewportView(view);
+		
 		addBackground(scrolPane.getPreferredSize().width,scrolPane.getPreferredSize().height);
 		//System.out.println(scrolPane.getViewport().getWidth() + " " + scrolPane.getViewport().getHeight());
-		this.add(scrolPane);
+		this.add(scrolPane,BorderLayout.CENTER);
 	}
 	
 	
@@ -85,18 +90,17 @@ public class CenterPanel extends Panel{
 		
 		Image backDropImg = ImageProc.cvtMatToBufferImg(backDropMat);
 		
-		JLabel label = new JLabel();
-		ImageIcon ic = new ImageIcon(backDropImg);
-		label.setIcon(ic);
-		view.add(label);
-		//scrolPane.getViewport().add(label);
+		display = new DisplayImage(backDropImg);
+		display.setPreferredSize(new Dimension(backDropImg.getWidth(null),backDropImg.getHeight(null)));
+		view.add(display);
+		
 	}
 	
 	/**
 	 * @return  -center panel viewport (scrollPanel)
 	 */
-	public JViewport getCenterViewPort(){
-		return centerViewport;
+	public JPanel getCenterViewPort(){
+		return this.view;
 	}
 	
 	/**
@@ -111,5 +115,9 @@ public class CenterPanel extends Panel{
 	 */
 	public JPanel getView(){
 		return view;
+	}
+	
+	public JPanel getDisplayPanel(){
+		return this.display;
 	}
 }

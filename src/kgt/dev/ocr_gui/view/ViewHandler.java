@@ -39,7 +39,7 @@ public class ViewHandler {
 	 */
 	public ViewHandler(JFrame newFrame){
 		this.rootFrame = newFrame;
-		getNativeResolution(150,200);
+		getNativeResolution(0,50);
 		setAllPanelWIdths();
 	}
 	
@@ -61,7 +61,7 @@ public class ViewHandler {
 		frame.setPreferredSize(new Dimension(Width,Height));
 		//frame.setMinimumSize(new Dimension((Width/7)+(Width/6),Height));
 		frame.setFocusable(true);
-		frame.setResizable(false);
+		frame.setResizable(true);
 		menuBar = new MenuBar(frame);
 		menuBar.initMenu();
 		
@@ -106,7 +106,7 @@ public class ViewHandler {
 	 * accordance with the native screen resolution
 	 */
 	private void setAllPanelWIdths(){
-		tpWidth = Width/7;
+		tpWidth = Width/6;
 		ilWidth = Width/6;
 		cpWidth = Width - (tpWidth + ilWidth);
     }

@@ -1,6 +1,7 @@
 package kgt.dev.ocr_gui.controller;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,8 +16,12 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 
+import org.opencv.core.Size;
+
 import kgt.dev.ocr_gui.model.ImageMatrix;
 import kgt.dev.ocr_gui.model.ModelHandler;
+import kgt.dev.ocr_gui.utilities.ImageProc;
+import kgt.dev.ocr_gui.view.DisplayImage;
 import kgt.dev.ocr_gui.view.ViewHandler;
 
 public class ImageListController {
@@ -110,8 +115,19 @@ public class ImageListController {
 					
 					//Adds the selected image to the center panel viewport
 					if(tmpImgMat.getIsSelected()){	
+						
 						ControlHandler.getPrimActions().setFocusedImage(tmpImgMat);
-						ControlHandler.getPrimActions().displaySelectedImage(tmpImgMat.getImgMatrix());
+						double width = (double)(view.getCenterPanel().getWidth());
+						double height = (double)(view.getCenterPanel().getHeight());
+						ImageProc.resizeImgAspect(tmpImgMat.getImgMatrix(), new Size(width -410,height),view.getCenterPanel().getHeight(), ImageProc.AXIS_HEIGHT);
+						Image img = ImageProc.cvtMatToBufferImg(tmpImgMat.getImgMatrix());
+						//view.getCenterPanel().removeAll();
+						DisplayImage display = (DisplayImage) view.getCenterPanel().getDisplayPanel();
+						
+						//view.getCenterPanel().getCenterViewPort().setPreferredSize(new Dimension(1000,700));
+						display.setDisplayImage(img);
+						display.update();
+						
 						//ControlHandler.getCenterController().btnMnemonic();
 						//ControlHandler.getCenterController().zoomControl();
 					}
