@@ -62,5 +62,6 @@ public class ContrastTool extends Tools {
 		this.add(p,BorderLayout.SOUTH);
 		this.add(this.slider,BorderLayout.CENTER);
 	}
+	
 
 }

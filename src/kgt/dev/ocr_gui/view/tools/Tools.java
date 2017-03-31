@@ -23,8 +23,8 @@ public abstract class Tools extends JPanel{
 		return this.slider;
 	}
 	
-	public void setValue(String val){
-		this.value.setText(val);
+	public void setValue(int i){
+		this.value.setText(String.valueOf(i));
 	}
 	
 	public int getSliderValue(){
@@ -33,5 +33,9 @@ public abstract class Tools extends JPanel{
 	
 	public String getValue(){
 		return this.value.getText();
+	}
+	
+	public JTextArea getTextArea(){
+		return this.value;
 	}
 }

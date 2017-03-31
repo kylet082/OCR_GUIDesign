@@ -36,7 +36,8 @@ public class ControlHandler {
 		centerController = new CenterPanelController(view,model);
 		centerController.init();
 		
-		
+		ImageToolController toolController = new ImageToolController(view, model);
+		toolController.init();
 	}
 	
 	/**

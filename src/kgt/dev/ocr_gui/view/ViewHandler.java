@@ -138,4 +138,11 @@ public class ViewHandler {
 	public ImageListPanel getImgListPane(){
 		return imgListPanel;
 	}
+	
+	/**
+	 * @return - Tool panel
+	 */
+	public ToolPanel getToolPanel(){
+		return this.toolPanel;
+	}
 }

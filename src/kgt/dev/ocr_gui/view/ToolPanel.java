@@ -3,6 +3,7 @@ package kgt.dev.ocr_gui.view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -11,6 +12,7 @@ import java.awt.RenderingHints;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
@@ -36,6 +38,8 @@ public class ToolPanel extends Panel {
 	private JPanel outerPanel, topPanel,btmPanel,imagingToolPanel,documentPanel;
 	
 	private Tools contrast,smoothing,guassian,thresh;
+	
+	private JButton applyBtn,revertBtn;
 	
 	/**
 	 * CONSTRUCTOR
@@ -128,10 +132,24 @@ public class ToolPanel extends Panel {
 		smoothing = new SmoothingTool("Smoothing",100);
 		smoothing.init();
 		
+		applyBtn = new JButton("Apply Changes");
+		applyBtn.setFont(new Font(this.getFont().getName(),Font.BOLD,12));
+		applyBtn.setBackground(new Color(255,87,34));
+		applyBtn.setPreferredSize(new Dimension(width/2 +30,35));
+		
+		ImageIcon back = new ImageIcon("res/icons/back32X32.png");
+		revertBtn = new JButton();
+		revertBtn.setBackground(new Color(255,87,34));
+		revertBtn.setPreferredSize(new Dimension(width/2 -60,35));
+		revertBtn.setIcon(back);
+		
 		panel.add(contrast);
 		panel.add(thresh);
 		panel.add(guassian);
 		panel.add(smoothing);
+		
+		panel.add(applyBtn);
+		panel.add(revertBtn);
 	}
 	
 	private void initDocAnalysisTools(JPanel panel){

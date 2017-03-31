@@ -106,6 +106,14 @@ public class ImageProc {
 		return imgMat;
 	}
 	
+	public static Mat setContrast(Mat imgMat,int value){
+		
+		Mat dst = new Mat(imgMat.rows(),imgMat.cols(),imgMat.type());
+		imgMat.convertTo(dst,-1, 10d * value/100);
+		
+		return dst;
+	}
+	
 	/**
 	 * @param imageMat image matrix to clone
 	 * @return - the cloned image matrix
