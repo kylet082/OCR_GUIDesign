@@ -108,11 +108,18 @@ public class ImageListPanel extends Panel {
 				BorderFactory.createEtchedBorder());
 		btmPane.setBorder(btmPanelBorder);
 		
+		Dimension btnDim = new Dimension(btmPane.getPreferredSize().width / 4 - 10, 40);
+		
 		openBtn = new JButton();
 		clearBtn = new JButton();
 		saveBtn = new JButton();
 		copyBtn = new JButton();
 		viewBtn = new JButton();
+		
+		clearBtn.setPreferredSize(btnDim);
+		saveBtn.setPreferredSize(btnDim);
+		copyBtn.setPreferredSize(btnDim);
+		openBtn.setPreferredSize(btnDim);
 		
 		viewIc = new ImageIcon("res/icons/viewimg.png");
 		openIc = new ImageIcon("res/icons/open32X32.png");

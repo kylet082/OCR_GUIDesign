@@ -13,6 +13,8 @@ public abstract class NeuralNets implements Serializable {
 	 */
 	protected TrainingSet trainSet;
 	
+	protected String name;
+	
 	/**
 	 * Test if the network has been trained
 	 */
@@ -43,9 +45,28 @@ public abstract class NeuralNets implements Serializable {
 	
 	/**
 	 * @param test sample data to recoginize
+	 * 
 	 * @return
 	 */
 	public abstract char recognise(SampleData test);
+	
+	/**
+	 * The neural network name
+	 * 
+	 * @return
+	 */
+	public String getName(){
+		return this.name;
+	}
+	
+	/**
+	 * Set the neural networks name
+	 * 
+	 * @param newName
+	 */
+	public void setName(String newName){
+		this.name = newName;
+	}
 	
 	/**
 	 * @param message -status message passing

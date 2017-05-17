@@ -8,7 +8,6 @@ public class NeuralNetworkModel implements Serializable {
 
 	private static final long serialVersionUID = 7020102062297388859L;
 
-
 	private NeuralNets net;
 	
 	public NeuralNetworkModel(NeuralNets newNet){

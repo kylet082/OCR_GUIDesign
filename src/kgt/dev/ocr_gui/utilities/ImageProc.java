@@ -5,9 +5,14 @@ import java.awt.image.DataBufferByte;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+import org.opencv.core.CvType;
 import org.opencv.core.Mat;
+import org.opencv.core.Point;
+import org.opencv.core.Scalar;
 import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
+
+import kgt.dev.ocr_gui.controller.ControlHandler;
 
 public class ImageProc {
 	
@@ -106,12 +111,104 @@ public class ImageProc {
 		return imgMat;
 	}
 	
+	/**
+	 * 
+	 * @param imgMat
+	 * @param value
+	 * @return
+	 */
+	public static Mat contrastEqual(Mat imgMat){
+
+		Mat dst = new Mat(imgMat.rows(),imgMat.cols(),imgMat.type());
+		Imgproc.cvtColor(imgMat,dst,Imgproc.COLOR_BGR2GRAY);
+		Imgproc.equalizeHist(dst, dst);
+		
+		return dst;
+	}
+	
+	/**
+	 * 
+	 * @param imgMat
+	 * @param value
+	 * @return
+	 */
 	public static Mat setContrast(Mat imgMat,int value){
 		
 		Mat dst = new Mat(imgMat.rows(),imgMat.cols(),imgMat.type());
 		imgMat.convertTo(dst,-1, 10d * value/100);
 		
 		return dst;
+	}
+	
+	/**
+	 * 
+	 * @param imgMat
+	 * @param value
+	 * @return
+	 */
+	public static Mat setThreshhold(Mat imgMat, int value){
+		Mat m = new Mat();
+		Imgproc.threshold(imgMat, m, value, 255, Imgproc.THRESH_BINARY);
+		
+		return m;
+	}
+	
+	public static Mat setGaussianBlur(Mat imgMat,int val){
+		
+		Mat dest = new Mat();
+		Imgproc.GaussianBlur(imgMat, dest,new Size(val,val), 0);
+		
+		return dest;		
+	}
+	
+	/**
+	 * Dectect lines using hough line transformation.
+	 * 
+	 * @param imgMat
+	 * @return
+	 */
+	public static Mat houghLine(Mat imgMat){
+
+		Mat canny = new Mat();
+		Mat colorCanny = new Mat();
+		
+		Imgproc.Canny(imgMat, canny, 100, 240);
+		Imgproc.cvtColor(canny, colorCanny, Imgproc.COLOR_GRAY2BGR);
+		
+		for(int x = 1;x < 10;x++){
+			Mat lines = new Mat();
+			Imgproc.HoughLines(canny, lines, 2, Math.PI/180, 200);
+			
+			double[] data;
+			double rho,theta;
+			
+			Point pt1 = new Point();
+			Point pt2 = new Point();
+			
+			double a, b;
+			double x0, y0;
+			
+			for (int i = 0; i < lines.cols(); i++) {
+		         data = lines.get(0, i);
+		       
+		         rho = data[0];
+		         theta = data[1];
+		         
+		         a = Math.cos(theta);
+		         b = Math.sin(theta);
+		         x0 = a*rho;
+		         y0 = b*rho;
+		         
+		         pt1.x = Math.round(x0 + 1000*(-b));
+		         pt1.y = Math.round(y0 + 1000*(a));
+		         pt2.x = Math.round(x0 - 1000*(-b));
+		         pt2.y = Math.round(y0 - 1000 *(a));
+		         
+		         Imgproc.line(colorCanny, pt1, pt2, new Scalar(0, 0, 255), 3);
+			}
+		}
+			
+		return colorCanny;
 	}
 	
 	/**

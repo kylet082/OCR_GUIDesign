@@ -161,6 +161,8 @@ public class NetConfigController {
 			public void actionPerformed(ActionEvent e) {
 				
 				String name = JOptionPane.showInputDialog(view.getFrame(), "Name the Network");
+				model.getNeuralNet().setName(name);
+				
 				Path path = SerializeObj.createDir("Neural Networks");
 				File f = new File(path.toString() + "/" + name + ".net");
 				

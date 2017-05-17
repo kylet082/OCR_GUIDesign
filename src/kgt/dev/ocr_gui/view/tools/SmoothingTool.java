@@ -16,18 +16,22 @@ import javax.swing.border.EtchedBorder;
 
 public class SmoothingTool extends Tools{
 
-	public SmoothingTool(String newLabel, int range) {
-		super(newLabel, range);
+	public SmoothingTool(String newLabel, int[] range, int panelWidth) {
+		super(newLabel, range, panelWidth);
 	}
 
 	@Override
 	public void init() {
-		this.setPreferredSize(new Dimension(215,70));
+		this.setPreferredSize(new Dimension(this.pWidth,95));
 		BorderLayout layout = new BorderLayout();
 		this.setLayout(layout);
 		
 		this.setBackground(new Color(189, 195, 199));
 		this.slider.setBackground(new Color(189, 195, 199));
+		this.slider.setMinorTickSpacing(10);
+		this.slider.setMajorTickSpacing(30);
+		this.slider.setPaintTicks(true);
+		this.slider.setPaintLabels(true);
 		
 		Border border = BorderFactory.createCompoundBorder(
 				BorderFactory.createEtchedBorder(EtchedBorder.LOWERED),BorderFactory.createTitledBorder(this.label));

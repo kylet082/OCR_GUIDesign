@@ -10,6 +10,7 @@ public class DisplayImage extends JPanel{
 	private static final long serialVersionUID = 1L;
 	
 	private Image image;
+	
 	public DisplayImage(Image newImage){
 		this.image = newImage;
 	}
@@ -28,8 +29,17 @@ public class DisplayImage extends JPanel{
 		g.drawImage(image, x, y, this);
 	}
 	
+	/**
+	 * Used for Menmento class pattern
+	 * 
+	 * @param newImg
+	 */
 	public void setDisplayImage(Image newImg){
 		this.image = newImg;
+	}
+	
+	public Image getDisplayImage(){
+		return this.image;
 	}
 	
 }

@@ -1,5 +1,6 @@
 package kgt.dev.ocr_gui.view.tools;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
@@ -11,10 +12,14 @@ public abstract class Tools extends JPanel{
 	protected JSlider slider;
 	protected JTextArea value;
 	protected String label;
+	protected JButton actionButton;
+	protected int pWidth;
+
 	
-	public Tools(String newLabel, int range){
+	public Tools(String newLabel, int[] range, int panelWidth){
 		this.label = newLabel;
-		this.slider = new JSlider(JSlider.HORIZONTAL,0,range,20);
+		this.slider = new JSlider(JSlider.HORIZONTAL,range[0],range[1],20);
+		this.pWidth = panelWidth -20;
 	}
 	
 	public abstract void init();
@@ -38,4 +43,9 @@ public abstract class Tools extends JPanel{
 	public JTextArea getTextArea(){
 		return this.value;
 	}
+
+	public JButton getActionBtn() {
+		return this.actionButton;
+	}
+	
 }

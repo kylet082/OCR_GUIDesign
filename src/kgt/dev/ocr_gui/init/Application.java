@@ -20,13 +20,19 @@ import javax.swing.ImageIcon;
 public class Application {
 
 	private JFrame frame;
+	private ModelHandler model;
+	private ViewHandler view;
+	private ControlHandler controller;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		
+		//Load the OpenCV native library
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+		
+		//The rest of the code here... 
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -80,13 +86,13 @@ public class Application {
 		ImageIcon ic = new ImageIcon("res/icons/OCRLogo_C30X18.png");
 		frame.setIconImage(ic.getImage());
 		
-		ModelHandler model = new ModelHandler(null);
+		model = new ModelHandler(null);
 		model.init();
 		
-		ViewHandler view = new ViewHandler(frame);
+		view = new ViewHandler(frame);
 		view.initFrame();
 		
-		ControlHandler controller = new ControlHandler(view,model); 
+		controller = new ControlHandler(view,model); 
 		controller.init();
 	}
 	

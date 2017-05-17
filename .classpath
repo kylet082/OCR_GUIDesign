@@ -5,6 +5,7 @@
 	<classpathentry kind="lib" path="C:/Java_Packages/UI-Themes/JTattoo-1.6.11.jar" sourcepath="C:/Java_Packages/UI-Themes/JTattoo-SRC/com"/>
 	<classpathentry kind="lib" path="C:/opencv/build/java/opencv-320.jar">
 		<attributes>
+			<attribute name="javadoc_location" value="file:/C:/opencv/3.0.0/org/opencv/"/>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/opencv/build/java/x64"/>
 		</attributes>
 	</classpathentry>

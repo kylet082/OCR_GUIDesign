@@ -1,5 +1,6 @@
 package kgt.dev.ocr_gui.controller;
 
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -14,8 +15,14 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import org.opencv.core.Mat;
+import org.opencv.core.Size;
+import org.opencv.imgproc.Imgproc;
+
 import kgt.dev.ocr_gui.model.ModelHandler;
+import kgt.dev.ocr_gui.utilities.ImageProc;
 import kgt.dev.ocr_gui.view.ViewHandler;
+
 
 public class ImageToolController {
 
@@ -23,8 +30,10 @@ public class ImageToolController {
 	
 	private ViewHandler view;
 	
-	private ChangeListener actionContrast,actionHistEqual,
-		actionSmoothing,actionGuaissianNoise,actionBinaryThresh;
+	private ChangeListener actionContrast,actionSmoothing,
+								actionGuaissianNoise,actionBinaryThresh;
+	
+	private ActionListener actionHistEqual, actionApply, actionRevert;
 	
 	private FocusListener  actionConText,actionThreshText,actionGuassianText,actionSmoothText;
 	
@@ -44,7 +53,7 @@ public class ImageToolController {
 	 */
 	public void init(){
 		contrastAction();
-		histEqualAction();
+		contrastEqualAction();
 		smoothingAction();
 		guassianNoiseAction();
 		thresholdAction();
@@ -52,8 +61,35 @@ public class ImageToolController {
 		threshValAction();
 		guassianValAction();
 		smoothValAction();
+		applyAction();
+		revertAction();
 	}
 	
+	private void contrastEqualAction() {
+		actionHistEqual = new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				Mat m = ControlHandler.getPrimActions().getFocusedImage().getImgMatrix();
+				
+				Mat equaled = ImageProc.contrastEqual(m);
+				
+				Image img = ImageProc.cvtMatToBufferImg(equaled);
+				
+				//apply the contrasting action to the image
+				view.getCenterPanel().getDisplayPanel().setDisplayImage(img);
+				view.getCenterPanel().getDisplayPanel().update();
+				
+			}
+		};
+		
+		view.getToolPanel().getContrast().getActionBtn().addActionListener(actionHistEqual);
+	}
+
+	/**
+	 * 
+	 */
 	private void contValAction(){
 		actionConText = new FocusListener(){
 
@@ -72,6 +108,9 @@ public class ImageToolController {
 		view.getToolPanel().getContrast().getTextArea().addFocusListener(actionConText);
 	}
 	
+	/**
+	 * 
+	 */
 	private void threshValAction(){
 		actionThreshText = new FocusListener(){
 
@@ -90,6 +129,9 @@ public class ImageToolController {
 		view.getToolPanel().getThresh().getTextArea().addFocusListener(actionThreshText);
 	}
 	
+	/**
+	 * 
+	 */
 	private void guassianValAction(){
 		actionGuassianText = new FocusListener(){
 
@@ -108,6 +150,9 @@ public class ImageToolController {
 		view.getToolPanel().getGuassian().getTextArea().addFocusListener(actionGuassianText);
 	}
 	
+	/**
+	 * 
+	 */
 	private void smoothValAction(){
 		actionSmoothText = new FocusListener(){
 
@@ -125,12 +170,6 @@ public class ImageToolController {
 		};
 		view.getToolPanel().getSmoothing().getTextArea().addFocusListener(actionSmoothText);
 	}
-	/**
-	 * 
-	 */
-	private void contrastAction(){
-		
-	}
 	
 	/**
 	 * 
@@ -139,7 +178,17 @@ public class ImageToolController {
 		actionBinaryThresh = new ChangeListener(){
 			@Override
 			public void stateChanged(ChangeEvent arg0) {
+				System.out.println("Changing Thresh");
 				view.getToolPanel().getThresh().setValue(view.getToolPanel().getThresh().getSlider().getValue());
+				int value = view.getToolPanel().getThresh().getSliderValue();
+				Mat m = ControlHandler.getPrimActions().getFocusedImage().getImgMatrix();
+				
+				Mat results = ImageProc.setThreshhold(m, value);
+				Image img = ImageProc.cvtMatToBufferImg(results);
+				
+				//apply the contrasting action to the image
+				view.getCenterPanel().getDisplayPanel().setDisplayImage(img);
+				view.getCenterPanel().getDisplayPanel().update();
 			}
 			
 		};
@@ -149,16 +198,23 @@ public class ImageToolController {
 	/**
 	 * 
 	 */
-	private void histEqualAction(){
+	private void contrastAction(){
 		
-		actionHistEqual = new ChangeListener(){
+		actionContrast= new ChangeListener(){
 			@Override
 			public void stateChanged(ChangeEvent arg0) {
 				view.getToolPanel().getContrast().setValue(view.getToolPanel().getContrast().getSlider().getValue());
+				Mat m = ControlHandler.getPrimActions().getFocusedImage().getImgMatrix();
+				Mat m1 = ImageProc.setContrast(m, view.getToolPanel().getContrast().getSlider().getValue());
+				Image img = ImageProc.cvtMatToBufferImg(m1);
+				
+				//apply the contrasting action to the image
+				view.getCenterPanel().getDisplayPanel().setDisplayImage(img);
+				view.getCenterPanel().getDisplayPanel().update();
 			}
 			
 		};
-		view.getToolPanel().getContrast().getSlider().addChangeListener(actionHistEqual);
+		view.getToolPanel().getContrast().getSlider().addChangeListener(actionContrast);
 	}
 	
 	/**
@@ -183,9 +239,45 @@ public class ImageToolController {
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				view.getToolPanel().getGuassian().setValue(view.getToolPanel().getGuassian().getSlider().getValue());
+				int val = view.getToolPanel().getGuassian().getSliderValue();
+				Mat imgMat = ControlHandler.getPrimActions().getFocusedImage().getImgMatrix();
+				
+				Mat dest = ImageProc.setGaussianBlur(imgMat, val);
+				Image img = ImageProc.cvtMatToBufferImg(dest);
+				
+				//apply the contrasting action to the image
+				view.getCenterPanel().getDisplayPanel().setDisplayImage(img);
+				view.getCenterPanel().getDisplayPanel().update();
 			}
 			
 		};
 		view.getToolPanel().getGuassian().getSlider().addChangeListener(actionGuaissianNoise);
 	} 
+	
+	/**
+	 * Link to memento pattern classes
+	 */
+	private void applyAction(){
+		actionApply = new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				Image displayImage = view.getCenterPanel().getDisplayPanel().getDisplayImage();
+				
+			}
+			
+		};
+	}
+	
+	private void revertAction(){
+		actionRevert = new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+			
+		};
+	}
 }

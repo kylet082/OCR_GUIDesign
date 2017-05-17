@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -16,20 +17,29 @@ import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 
 public class ContrastTool extends Tools {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7026760988477739644L;
 
-	public ContrastTool(String label, int range) {
-		super(label, range);
+	public ContrastTool(String label, int[] range, int panelWidth) {
+		super(label, range, panelWidth);
 	}
 
 	@Override
 	public void init() {
 		
-		this.setPreferredSize(new Dimension(215,70));
+		this.setPreferredSize(new Dimension(this.pWidth,97));
 		BorderLayout layout = new BorderLayout();
 		this.setLayout(layout);
 		
 		this.setBackground(new Color(189, 195, 199));
 		this.slider.setBackground(new Color(189, 195, 199));
+		this.slider.setMinorTickSpacing(64);
+		this.slider.setMajorTickSpacing(127);
+		this.slider.setPaintTicks(true);
+		this.slider.setPaintLabels(true);
 		
 		Border border = BorderFactory.createCompoundBorder(
 				BorderFactory.createEtchedBorder(EtchedBorder.LOWERED),BorderFactory.createTitledBorder(this.label));
@@ -40,8 +50,12 @@ public class ContrastTool extends Tools {
 		
 		JPanel p1 = new JPanel();
 		p1.setBackground(new Color(189, 195, 199));
+		
 		JPanel empty = new JPanel();
 		empty.setBackground(new Color(189, 195, 199));
+		actionButton = new JButton("Equalize");
+		actionButton.setToolTipText("Apply Histogram Equalization");
+		empty.add(actionButton);
 		
 		GridLayout grid = new GridLayout(1,1);
 		p.setLayout(grid);
@@ -62,6 +76,4 @@ public class ContrastTool extends Tools {
 		this.add(p,BorderLayout.SOUTH);
 		this.add(this.slider,BorderLayout.CENTER);
 	}
-	
-
 }

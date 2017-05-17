@@ -117,7 +117,7 @@ public class CenterPanel extends Panel{
 		return view;
 	}
 	
-	public JPanel getDisplayPanel(){
+	public DisplayImage getDisplayPanel(){
 		return this.display;
 	}
 }

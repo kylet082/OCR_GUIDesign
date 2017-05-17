@@ -17,6 +17,7 @@ import kgt.dev.ocr_gui.model.ImageMatrix;
 import kgt.dev.ocr_gui.model.ModelHandler;
 import kgt.dev.ocr_gui.model.OpenImages;
 import kgt.dev.ocr_gui.model.TrainingSet;
+import kgt.dev.ocr_gui.neuralnet.NeuralNets;
 import kgt.dev.ocr_gui.neuralnet.createSets.ZipReader;
 import kgt.dev.ocr_gui.utilities.ImageProc;
 import kgt.dev.ocr_gui.utilities.SerializeObj;
@@ -90,17 +91,42 @@ public class PrimaryActionController {
 	 * @return - sample data obj
 	 */
 	public TrainingSet trainingSetChooser(){
+		
 		TrainingSet ts = null;
+		
 		fc = new JFileChooser("./TrainingSets");
 		FileNameExtensionFilter filter = new FileNameExtensionFilter(
 		"Serialized Samples","ser");
 		fc.setFileFilter(filter);
+		
 		if(fc.showOpenDialog(view.getFrame()) == JFileChooser.APPROVE_OPTION){
 			file = fc.getSelectedFile();
 			ts=(TrainingSet)SerializeObj.load(file);
 		}
 		
 		return ts;
+	}
+	
+	/**
+	 * Load in a created and save Neural Network
+	 * 
+	 * @return - NeuralNets
+	 */
+	public NeuralNets neuralNetChooser(){
+		
+		NeuralNets net = null;
+		
+		fc = new JFileChooser("./Neural Networks");
+		FileNameExtensionFilter filter = new FileNameExtensionFilter(
+				"Serialized Networks", "net");
+		fc.setFileFilter(filter);
+		
+		if(fc.showOpenDialog(view.getFrame()) == JFileChooser.APPROVE_OPTION){
+			file = fc.getSelectedFile();
+			net =(NeuralNets)SerializeObj.load(file);
+		}
+		
+		return net;
 	}
 	
 	/**

@@ -38,6 +38,13 @@ public class ControlHandler {
 		
 		ImageToolController toolController = new ImageToolController(view, model);
 		toolController.init();
+		
+		DocumentAnalysisController docAnalysisController = new DocumentAnalysisController(view,model);
+		docAnalysisController.control();
+		
+		OCRController ocrControl = new OCRController(view,model);
+		ocrControl.control();
+		
 	}
 	
 	/**

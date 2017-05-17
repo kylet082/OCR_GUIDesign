@@ -21,9 +21,8 @@ public class DocumentAnalysis {
 	  * 
 	  * @param newMat
 	  */
-	 public DocumentAnalysis(Mat newMat, String name){
-		this.mat = newMat; 
-		this.docName = name;
+	 public DocumentAnalysis(Mat newMat){
+		this.mat = newMat;
 	 }
 	 
 	 /**
@@ -79,7 +78,7 @@ public class DocumentAnalysis {
 		 for(y = 0; y < histData.length;y++){
 			 
 			 if(histData[y] == 0 && last > 0.0){
-				 lineBins.get(y)[3] = y + 2;
+				 lineBins.get(step)[3] = y + 2;
 				 step++;
 			 }
 			 last = histData[y];
@@ -143,10 +142,4 @@ public class DocumentAnalysis {
 		 return this.histData;
 	 }
 	 
-	 /**
-	  * @return
-	  */
-	 public String getDocName(){
-		 return this.docName;
-	 }
 }
