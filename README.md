@@ -14,4 +14,13 @@ Dependencies:
 
 ## GUI Design
 
-![gui](https://cloud.githubusercontent.com/assets/14908229/26210526/c341f314-3be7-11e7-8ea7-0edc9d4a00ab.PNG)
+![gui](https://cloud.githubusercontent.com/assets/14908229/26211640/dbcfd042-3bea-11e7-9d6b-be72e5828479.PNG)
+
+## Imaging Functions
+
+#### Used OpenCV for most imaging manipulation methods.At the moment the only imaging funtions that can manually be used to alter images are:  
+  > Contrast 
+  
+    Using Histogram Equalization
+    Contrast sketching
+  
