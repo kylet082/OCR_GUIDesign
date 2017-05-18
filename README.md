@@ -19,8 +19,37 @@ Dependencies:
 ## Imaging Functions
 
 #### Used OpenCV for most imaging manipulation methods.At the moment the only imaging funtions that can manually be used to alter images are:  
-  > Contrast 
+## Adjusting Contrast
+
+   The test image with bad illumination qualities:
+    
+   ![contrast image](https://cloud.githubusercontent.com/assets/14908229/26211899/97b7663a-3beb-11e7-93b8-96bbfd8f1a7e.PNG)
+    
+    Using Histogram Equalization:
+    
+   ![equal](https://cloud.githubusercontent.com/assets/14908229/26212156/8d56e142-3bec-11e7-90ab-00609a1300ea.PNG)
+    
+    Contrast sketching: 
+    
+   ![cont](https://cloud.githubusercontent.com/assets/14908229/26212248/d9f9451c-3bec-11e7-8a54-79e53df01401.PNG)
+   
+## Reducing Noise by applying guassian blur:
+    
+    The image before applying function
+![noise balloon](https://cloud.githubusercontent.com/assets/14908229/26212922/1f938004-3bef-11e7-87bb-57b32b0e0fa9.PNG)
+
+    The after effects, the image is smoother but is not as sharp.
+    
+![blur after](https://cloud.githubusercontent.com/assets/14908229/26213031/6793d372-3bef-11e7-9b11-f6aa7d66a96c.PNG)
+
+## Finding the text in the Image 
   
-    Using Histogram Equalization
-    Contrast sketching
+  The first step is to straighten the image or check that it is straight. This has been done using the Hough Line transformation 
+  The resulting line can be used to find the angle of the document skew using linear gradient equation. 
+  
+![skew doc](https://cloud.githubusercontent.com/assets/14908229/26213417/de7c9cc0-3bf0-11e7-9f13-0489cbcc35e5.PNG)
+  
+  The Resulting line projection. The image is passed through Canny edge detection to find relavant pixels for the Hough algorithm  
+  
+![hlresult](https://cloud.githubusercontent.com/assets/14908229/26213459/09893112-3bf1-11e7-9d8e-fdedbea1f1b8.PNG)  
   
