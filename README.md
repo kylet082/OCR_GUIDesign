@@ -11,3 +11,7 @@ Dependencies:
 •	JTattoo v1.6.11 (Look and feel theme – the short cut to trying to make it look pretty)
 
 •	JFreeCharts v1.0.19 
+
+## GUI Design
+
+![gui](https://cloud.githubusercontent.com/assets/14908229/26210526/c341f314-3be7-11e7-8ea7-0edc9d4a00ab.PNG)
