@@ -25,17 +25,18 @@ Dependencies:
     
    ![contrast image](https://cloud.githubusercontent.com/assets/14908229/26211899/97b7663a-3beb-11e7-93b8-96bbfd8f1a7e.PNG)
     
-    Using Histogram Equalization:
+       Using Histogram Equalization:
     
    ![equal](https://cloud.githubusercontent.com/assets/14908229/26212156/8d56e142-3bec-11e7-90ab-00609a1300ea.PNG)
     
-    Contrast sketching: 
+        Contrast sketching: 
     
    ![cont](https://cloud.githubusercontent.com/assets/14908229/26212248/d9f9451c-3bec-11e7-8a54-79e53df01401.PNG)
    
 ## Reducing Noise by applying guassian blur:
     
-    The image before applying function
+      The image before applying function
+    
 ![noise balloon](https://cloud.githubusercontent.com/assets/14908229/26212922/1f938004-3bef-11e7-87bb-57b32b0e0fa9.PNG)
 
     The after effects, the image is smoother but is not as sharp.
@@ -44,12 +45,22 @@ Dependencies:
 
 ## Finding the text in the Image 
   
-  The first step is to straighten the image or check that it is straight. This has been done using the Hough Line transformation 
-  The resulting line can be used to find the angle of the document skew using linear gradient equation. 
+      The first step is to straighten the image or check that it is straight. This has been done using the Hough Line transformation 
+      The resulting line can be used to find the angle of the document skew using linear gradient equation. 
   
 ![skew doc](https://cloud.githubusercontent.com/assets/14908229/26213417/de7c9cc0-3bf0-11e7-9f13-0489cbcc35e5.PNG)
   
-  The Resulting line projection. The image is passed through Canny edge detection to find relavant pixels for the Hough algorithm  
+      The Resulting line projection. The image is passed through Canny edge detection to find relavant pixels for the Hough algorithm. The document image can now be straighted.  
   
 ![hlresult](https://cloud.githubusercontent.com/assets/14908229/26213459/09893112-3bf1-11e7-9d8e-fdedbea1f1b8.PNG)  
-  
+
+#### Finding text bodies
+   
+      Using a method called projection Profiling, which calculates the pixel density along the X-axis. The bins along the y axis are 
+      used to find the textlines. The result is plotted as a Hstogram to visualise the relationship between textlines and bins.
+   
+   ![projection profile](https://cloud.githubusercontent.com/assets/14908229/26213698/e8aef41c-3bf1-11e7-922f-8ebe5953ef3a.PNG)
+   
+         The histogram data is then used to sample down the text lines by finding the start and end points along the y and x axis.
+         
+   ![textlines](https://cloud.githubusercontent.com/assets/14908229/26214662/1d1a5a0e-3bf5-11e7-93cf-293543aee513.PNG)
