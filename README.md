@@ -68,3 +68,8 @@ Dependencies:
        y and x axis.
          
    ![textlines](https://cloud.githubusercontent.com/assets/14908229/26214662/1d1a5a0e-3bf5-11e7-93cf-293543aee513.PNG)
+
+### Word Segmeting Coming soon!
+
+### Character segmentation Coming Soon!
+
