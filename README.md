@@ -73,3 +73,18 @@ Dependencies:
 
 ### Character segmentation Coming Soon!
 
+### Feature Extraction and creating the training sets
+
+      Using a method called temple matching to create protoypes of the learnt font set. These Randsom note 
+      letters will be used to train the selected Neural Network. Template matching is probably the least robust
+      method for character recognition, but is easy to implement. An example of the previewed character sets:
+      
+![templatematching](https://cloud.githubusercontent.com/assets/14908229/26244186/a94921ae-3c86-11e7-9ba7-4709ef5df5f0.PNG)
+
+### Creating and configuring the neural network
+      
+      I tried to automate the creaton of the neural networks as much as possible. So the number of input, hidden and output
+      nuerons is calculated using the size of sample training data (matrix width and height) and the number of symbols in
+      the training sets. 
+      
+![netconfig](https://cloud.githubusercontent.com/assets/14908229/26244423/7d5a6aa2-3c87-11e7-9f2b-92c0cf30664d.PNG)
