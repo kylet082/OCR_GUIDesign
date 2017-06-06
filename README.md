@@ -1,6 +1,6 @@
 # OCR using OpenCV and Encog
 
-## This project was an experimental / crash course on OCR. Primarily to explore Neural Networks and touch a little on Computer vision basics. The outcome, has developed into a full user interface using Swing :/ and JTattoo look and feel theme. Below is the GUI design and a few functionalities the capablities of the program. 
+## This project was an experimental / crash course on OCR. Primarily to explore Neural Networks and touch a little on Computer vision basics. The outcome, has developed into a full user interface using Swing and JTattoo look and feel theme. Below is the GUI design and a few functionalities the capablities of the program. 
 
 Dependencies:
 
@@ -59,7 +59,7 @@ Dependencies:
 #### Finding text bodies
    
       Using a method called projection Profiling, which calculates the pixel density along the X-axis. The bins 
-      along the y axis are used to find the textlines. The result is plotted as a Hstogram to visualise the 
+      along the y axis are used to find the textlines. The result is plotted as a Histogram to visualise the 
       relationship between textlines and bins.
    
    ![projection profile](https://cloud.githubusercontent.com/assets/14908229/26213698/e8aef41c-3bf1-11e7-922f-8ebe5953ef3a.PNG)
@@ -69,7 +69,7 @@ Dependencies:
          
    ![textlines](https://cloud.githubusercontent.com/assets/14908229/26214662/1d1a5a0e-3bf5-11e7-93cf-293543aee513.PNG)
 
-### Word Segmeting Coming soon!
+### Word Segmenting Coming soon!
 
 ### Character segmentation Coming Soon!
 
